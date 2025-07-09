@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Salesforce DITTO",
+  "description": "Search any Salesforce user and log in instantly, plus banner to return to admin.",
+  "version": "0.1.0",
+  "icons": { "128": "icons/icon128.png" },
+
+  "action": {
+    "default_title": "Quick Login-As",
+    "default_popup": "popup.html"
+  },
+
+"content_scripts": [
+  {
+    "matches": [
+      "https://*.lightning.force.com/*"
+    ],
+    "js": ["lightning_inject.js"],
+    "run_at": "document_idle"
+  },
+  {
+    "matches": [
+      "https://*.my.salesforce.com/*"
+    ],
+    "js": ["content.js"],
+    "run_at": "document_idle",
+    "all_frames": true
+  }
+],
+
+
+  "permissions": ["tabs", "scripting", "webNavigation"],
+
+  "host_permissions": [
+    "https://*.lightning.force.com/*",
+    "https://*.my.salesforce.com/*" 
+    ]
+}
